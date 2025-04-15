@@ -1,0 +1,157 @@
+/* Reset de márgenes y padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo del cuerpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f5ff; /* Fondo más claro y fresco */
+    color: #333;
+}
+
+/* Contenedor principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de navegación como botones */
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ff6f61; /* Color vibrante */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff4a3a; /* Color al pasar el ratón */
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+/* Estilos de tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #ff6f61; /* Encabezados vibrantes */
+    color: white;
+}
+
+/* Estilo de formularios */
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+form input:focus {
+    border-color: #ff6f61; /* Borde destacado al enfocar */
+}
+
+/* Estilo de botones de formulario */
+form button {
+    padding: 10px 15px;
+    background-color: #ff6f61; /* Color vibrante */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #ff4a3a; /* Color al pasar el ratón */
+}
+
+/* Estilo del pie de página */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background-color: #ff6f61; /* Pie de página vibrante */
+    color: white;
+    border-top: 1px solid #ddd;
+}
+
+/* Estilo de la imagen en el pie */
+.footer-image {
+    text-align: center; /* Centra la imagen */
+    margin: 20px 0; /* Espaciado alrededor de la imagen */
+}
+
+.footer-image img {
+    max-width: 100%; /* Hace que la imagen sea responsiva */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 8px; /* Opcional: bordes redondeados */
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+}
+
+.mi-imagen {
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    max-width: 500px; /* Establece un ancho máximo */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border: 2px solid #000; /* Añade un borde negro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    transition: transform 0.3s; /* Transición suave para efectos */
+}
+
+.mi-imagen:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el ratón */
+}
