@@ -1,0 +1,13 @@
+com\semillero\practica2\Config\SecurityConfig.class
+com\semillero\practica2\Practica2Application.class
+com\semillero\practica2\Config\JwtFilter.class
+com\semillero\practica2\WS\LoginRequest.class
+com\semillero\practica2\WS\HelloController.class
+com\semillero\practica2\Config\JwtGeneratorImpl.class
+com\semillero\practica2\WS\TokenResponse.class
+com\semillero\practica2\Entity\Persona.class
+com\semillero\practica2\Config\JwtProperties.class
+com\semillero\practica2\WS\AuthController.class
+com\semillero\practica2\Utilidad\Util.class
+com\semillero\practica2\Config\JwtGeneratorInterface.class
+com\semillero\practica2\Repository\PersonRepository.class
