@@ -1,0 +1,23 @@
+<div class="polizas-wrapper">
+
+    <div class="appnav">
+        <app-navbar></app-navbar>
+    </div>
+
+    <div class="polizas-container" *ngIf="!loading">
+        <mat-card *ngFor="let poliza of polizas" class="poliza-card">
+            <mat-card-content>
+                <h3>{{ poliza.numeroPoliza }}</h3>
+                <p>Cliente: {{ poliza.cliente.nombres }} {{ poliza.cliente.apellidos || '' }}</p>
+                <p>Prima Total: Q{{ poliza.primaTotalConIva }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button color="primary" (click)="verDetalle(poliza)" matTooltip="Ver Detalle">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+            </mat-card-actions>
+
+        </mat-card>
+    </div>
+
+    <div *ngIf="loading" class="loading">Cargando pólizas...</div>

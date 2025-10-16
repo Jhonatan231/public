@@ -1,0 +1,65 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.left-side {
+  flex: 3;
+  background: linear-gradient(
+      rgba(10, 25, 47, 0.6),
+      rgba(10, 25, 47, 0.6)
+    ),
+    url('../../../assets/test.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.login-card {
+  width: 420px;
+  min-height: 100vh;
+  padding: 50px;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  color: #142c58;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.login-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.error {
+  color: #d32f2f;
+  margin-top: 10px;
+  font-weight: bold;
+}

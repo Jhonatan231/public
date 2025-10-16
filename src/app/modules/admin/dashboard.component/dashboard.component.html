@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+
+  <div class="appnav"><app-navbar></app-navbar></div>
+
+  <div class="dashboard-content" *ngIf="dashboard">
+    <h2>Dashboard de Pólizas</h2>
+
+    <div class="cards-grid">
+      <mat-card class="metric-card">
+        <h3>Total Prima Vendida</h3>
+        <p><strong>Hoy:</strong> {{dashboard.totalPrimaDia}}</p>
+        <p><strong>Mes:</strong> {{dashboard.totalPrimaMes}}</p>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <h3>Total Costos Siniestros</h3>
+        <p><strong>Hoy:</strong> {{dashboard.totalCostosDia}}</p>
+        <p><strong>Mes:</strong> {{dashboard.totalCostosMes}}</p>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <h3>Total Pólizas Vendidas</h3>
+        <p><strong>Hoy:</strong> {{dashboard.totalPolizasDia}}</p>
+        <p><strong>Mes:</strong> {{dashboard.totalPolizasMes}}</p>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <h3>Total Siniestros Atendidos</h3>
+        <p><strong>Hoy:</strong> {{dashboard.totalSiniestrosDia}}</p>
+        <p><strong>Mes:</strong> {{dashboard.totalSiniestrosMes}}</p>
+      </mat-card>
+    </div>
+  </div>
+
+  <p *ngIf="!dashboard" class="loading-text">Cargando datos...</p>
+</div>

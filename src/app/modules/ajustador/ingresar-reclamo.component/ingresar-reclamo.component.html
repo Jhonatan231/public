@@ -1,0 +1,44 @@
+<div class="ingresar-container">
+
+  <div class="appnav">
+    <app-navbar></app-navbar>
+  </div>
+
+  <mat-card>
+    <h2>Ingresar Reclamo</h2>
+    <form [formGroup]="reclamoForm" (ngSubmit)="ingresarReclamo()">
+      <mat-form-field appearance="fill">
+        <mat-label>Número Póliza</mat-label>
+        <input matInput formControlName="numeroPoliza">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Cobertura</mat-label>
+        <input matInput formControlName="cobertura">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Siniestro</mat-label>
+        <input matInput type="date" formControlName="fechaSiniestro">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre Ingresante</mat-label>
+        <input matInput formControlName="nombre">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Apellido Ingresante</mat-label>
+        <input matInput formControlName="apellido">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Ingreso</mat-label>
+        <input matInput type="date" formControlName="fechaIngreso">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Ingresar Reclamo</button>
+    </form>
+  </mat-card>
+
+</div>

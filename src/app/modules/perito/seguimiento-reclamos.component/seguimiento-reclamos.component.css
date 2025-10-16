@@ -1,0 +1,69 @@
+.reclamos-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+.appnav {
+  width: 25%;
+  background-color: #16222A;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card {
+  width: 75%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  margin: 40px auto;
+  padding: 30px 40px;
+  animation: fadeIn 0.5s ease-in-out;
+  overflow-x: auto;
+}
+
+h2 {
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.reclamos-table {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th.mat-header-cell {
+  background-color: #1a237e;
+  color: white;
+  font-weight: 600;
+}
+
+td.mat-cell {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+button[mat-button] {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-right: 5px;
+}
+
+button[mat-button]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

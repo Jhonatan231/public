@@ -1,0 +1,47 @@
+.ingresar-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+.appnav {
+  width: 25%;
+  background-color: #16222A;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card {
+  width: 75%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  padding: 40px 50px;
+  animation: fadeIn 0.5s ease-in-out;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+h2 {
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}

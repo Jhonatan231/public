@@ -1,0 +1,88 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+.appnav {
+  width: 25%;
+  background-color: #16222A;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-content {
+  width: 75%;
+  padding: 40px 60px;
+  overflow-y: auto;
+  animation: fadeIn 0.6s ease-in-out;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.metric-card h3 {
+  color: #1a237e;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.metric-card p {
+  color: #444;
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.metric-card strong {
+  color: #1565c0;
+}
+
+.loading-text {
+  width: 75%;
+  text-align: center;
+  color: white;
+  font-size: 1.3rem;
+  margin: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

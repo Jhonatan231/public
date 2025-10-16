@@ -1,0 +1,16 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+  <ng-container *ngFor="let item of menuItems">
+    <a mat-list-item [routerLink]="item.route" *ngIf="mostrarItem(item.roles)">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span class="menu-label">{{ item.label }}</span>
+    </a>
+  </ng-container>
+  <ng-container>  
+   <button mat-raised-button color="warn" *ngIf="roles.length > 0" (click)="logout()">Cerrar sesión</button>
+  </ng-container>
+</mat-nav-list>
+
+  </mat-sidenav>
+

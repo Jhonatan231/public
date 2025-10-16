@@ -1,0 +1,37 @@
+
+<div class="html-interno">
+
+<div class="appnav"><app-navbar></app-navbar></div>
+
+<mat-card>
+    <h2>Crear Cliente</h2>
+    <form [formGroup]="clienteForm" (ngSubmit)="crearCliente()">
+      <mat-form-field appearance="fill"><mat-label>Nombres</mat-label><input matInput formControlName="nombres"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>Apellidos</mat-label><input matInput formControlName="apellidos"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>NIT</mat-label><input matInput formControlName="nit"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>DPI</mat-label><input matInput formControlName="dpi"></mat-form-field>
+      <div formArrayName="telefonos">
+        <div *ngFor="let t of telefonos.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="fill"><mat-label>Teléfono</mat-label><input matInput formControlName="telefono"></mat-form-field>
+          <button mat-mini-button color="warn" (click)="removeTelefono(i)">Eliminar</button>
+        </div>
+        <button mat-button color="primary" (click)="addTelefono()">Agregar Teléfono</button>
+      </div>
+      <div formArrayName="correos">
+        <div *ngFor="let c of correos.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="fill"><mat-label>Correo</mat-label><input matInput formControlName="correo"></mat-form-field>
+          <button mat-mini-button color="warn" (click)="removeCorreo(i)">Eliminar</button>
+        </div>
+        <button mat-button color="primary" (click)="addCorreo()">Agregar Correo</button>
+      </div>
+      <mat-form-field appearance="fill"><mat-label>Dirección Cobro</mat-label><input matInput formControlName="direccionCobro"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>Dirección Fiscal</mat-label><input matInput formControlName="direccionFiscal"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>Dirección Correspondencia</mat-label><input matInput formControlName="direccionCorrespondencia"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>Género</mat-label><input matInput formControlName="genero"></mat-form-field>
+      <mat-form-field appearance="fill"><mat-label>Fecha Nacimiento</mat-label><input matInput type="date" formControlName="fechaNacimiento"></mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Crear Cliente</button>
+    </form>
+  </mat-card>
+  
+
+  </div>
