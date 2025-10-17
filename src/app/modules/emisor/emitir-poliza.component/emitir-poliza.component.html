@@ -1,64 +1,78 @@
-<div class="emitir-container">
-  <app-navbar></app-navbar>
+<div class="emitir-dashboard-container">
+  <div class="appnav">
+    <app-navbar></app-navbar>
+  </div>
 
-  <div class="form-wrapper">
-    <mat-card class="poliza-card">
+  <div class="emitir-content">
+    <mat-card class="emitir-card">
       <h2 class="titulo">Emitir Póliza</h2>
 
       <form [formGroup]="polizaForm" (ngSubmit)="emitirPoliza()">
         <mat-horizontal-stepper [linear]="true" #stepper>
-          
+
+          <!-- PASO 1: Cliente -->
           <mat-step [stepControl]="cliente">
             <form [formGroup]="cliente">
               <ng-template matStepLabel>Datos del Cliente</ng-template>
 
               <div class="grid">
                 <mat-form-field appearance="outline">
-                  <mat-label>Nombres</mat-label>
+                  <mat-label>Nombres *</mat-label>
                   <input matInput formControlName="nombres">
+                  <mat-error *ngIf="cliente.get('nombres')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Apellidos</mat-label>
+                  <mat-label>Apellidos *</mat-label>
                   <input matInput formControlName="apellidos">
+                  <mat-error *ngIf="cliente.get('apellidos')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>NIT</mat-label>
+                  <mat-label>NIT *</mat-label>
                   <input matInput formControlName="nit">
+                  <mat-error *ngIf="cliente.get('nit')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>DPI</mat-label>
+                  <mat-label>DPI *</mat-label>
                   <input matInput formControlName="dpi">
+                  <mat-error *ngIf="cliente.get('dpi')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Género</mat-label>
+                  <mat-label>Género *</mat-label>
                   <mat-select formControlName="genero">
                     <mat-option value="M">Masculino</mat-option>
                     <mat-option value="F">Femenino</mat-option>
                   </mat-select>
+                  <mat-error *ngIf="cliente.get('genero')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Fecha de Nacimiento</mat-label>
-                  <input matInput type="date" formControlName="fechaNacimiento">
+                  <mat-label>Fecha de Nacimiento *</mat-label>
+                  <input matInput [matDatepicker]="dpCliente" formControlName="fechaNacimiento">
+                  <mat-datepicker-toggle matSuffix [for]="dpCliente"></mat-datepicker-toggle>
+                  <mat-datepicker #dpCliente></mat-datepicker>
+                  <mat-error *ngIf="cliente.get('fechaNacimiento')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Dirección de Cobro</mat-label>
+                  <mat-label>Dirección de Cobro *</mat-label>
                   <input matInput formControlName="direccionCobro">
+                  <mat-error *ngIf="cliente.get('direccionCobro')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Dirección Fiscal</mat-label>
+                  <mat-label>Dirección Fiscal *</mat-label>
                   <input matInput formControlName="direccionFiscal">
+                  <mat-error *ngIf="cliente.get('direccionFiscal')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Dirección de Correspondencia</mat-label>
+                  <mat-label>Dirección de Correspondencia *</mat-label>
                   <input matInput formControlName="direccionCorrespondencia">
+                  <mat-error *ngIf="cliente.get('direccionCorrespondencia')?.hasError('required')">Requerido</mat-error>
                 </mat-form-field>
               </div>
 
@@ -67,128 +81,134 @@
                 <div formArrayName="telefonos" class="array-list">
                   <div *ngFor="let t of telefonos.controls; let i = index" class="array-item">
                     <mat-form-field appearance="outline">
-                      <mat-label>Teléfono</mat-label>
-                      <input matInput [formControlName]="i">
+                      <mat-label>Teléfono *</mat-label>
+                      <input matInput [formControlName]="i" placeholder="+502 4444 5555">
+                      <mat-error *ngIf="t.hasError('required')">Requerido</mat-error>
+                      <mat-error *ngIf="t.hasError('pattern')">Formato +502 4444 5555</mat-error>
                     </mat-form-field>
                     <button mat-icon-button color="warn" (click)="removeTelefono(i)" *ngIf="telefonos.length > 1">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>
-                  <button mat-stroked-button color="primary" (click)="addTelefono()">Agregar Teléfono</button>
+                  <button type="button" class="add-btn" (click)="addTelefono()">
+                    <mat-icon>add</mat-icon> Agregar Teléfono
+                  </button>
                 </div>
 
                 <h3>Correos</h3>
                 <div formArrayName="correos" class="array-list">
                   <div *ngFor="let c of correos.controls; let i = index" class="array-item">
                     <mat-form-field appearance="outline">
-                      <mat-label>Correo</mat-label>
-                      <input matInput type="email" [formControlName]="i">
+                      <mat-label>Correo *</mat-label>
+                      <input matInput type="email" [formControlName]="i" placeholder="ejemplo@correo.com">
+                      <mat-error *ngIf="c.hasError('required')">Requerido</mat-error>
+                      <mat-error *ngIf="c.hasError('pattern')">Formato inválido</mat-error>
                     </mat-form-field>
                     <button mat-icon-button color="warn" (click)="removeCorreo(i)" *ngIf="correos.length > 1">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>
-                  <button mat-stroked-button color="primary" (click)="addCorreo()">Agregar Correo</button>
+                  <button type="button" class="add-btn" (click)="addCorreo()">
+                    <mat-icon>add</mat-icon> Agregar Correo
+                  </button>
                 </div>
               </div>
 
               <div class="buttons">
-                <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                <button mat-flat-button class="stepper-btn" matStepperNext>Siguiente</button>
               </div>
             </form>
           </mat-step>
 
           <mat-step [stepControl]="beneficiarios">
-            <form [formGroup]="polizaForm">
-              <ng-template matStepLabel>Beneficiarios</ng-template>
-
-              <div formArrayName="beneficiarios" class="array-list">
-                <div *ngFor="let b of beneficiarios.controls; let i=index" [formGroupName]="i" class="array-item">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Nombres</mat-label>
-                    <input matInput formControlName="nombres">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput formControlName="apellidos">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Parentesco</mat-label>
-                    <input matInput formControlName="parentesco">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Participación (%)</mat-label>
-                    <input matInput type="number" formControlName="participacion">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Género</mat-label>
-                    <mat-select formControlName="genero">
-                      <mat-option value="M">Masculino</mat-option>
-                      <mat-option value="F">Femenino</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <button mat-icon-button color="warn" (click)="removeBeneficiario(i)" *ngIf="beneficiarios.length > 1">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-                <button mat-stroked-button color="primary" (click)="addBeneficiario()">Agregar Beneficiario</button>
+            <ng-template matStepLabel>Beneficiarios</ng-template>
+            <div formArrayName="beneficiarios" class="array-list">
+              <div *ngFor="let b of beneficiarios.controls; let i=index" [formGroupName]="i" class="array-item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nombres *</mat-label>
+                  <input matInput formControlName="nombres">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Apellidos *</mat-label>
+                  <input matInput formControlName="apellidos">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Parentesco *</mat-label>
+                  <input matInput formControlName="parentesco">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Participación (%) *</mat-label>
+                  <input matInput type="number" formControlName="participacion">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Género *</mat-label>
+                  <mat-select formControlName="genero">
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-icon-button color="warn" (click)="removeBeneficiario(i)" *ngIf="beneficiarios.length > 1">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
-
-              <div class="buttons">
-                <button mat-button matStepperPrevious>Anterior</button>
-                <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
-              </div>
-            </form>
+              <button type="button" class="add-btn" (click)="addBeneficiario()">
+                <mat-icon>add</mat-icon> Agregar Beneficiario
+              </button>
+            </div>
+            <div class="buttons">
+              <button mat-button class="stepper-btn" matStepperPrevious>Anterior</button>
+              <button mat-flat-button class="stepper-btn" matStepperNext>Siguiente</button>
+            </div>
           </mat-step>
 
           <mat-step [stepControl]="dependientes">
-            <form [formGroup]="polizaForm">
-              <ng-template matStepLabel>Dependientes</ng-template>
-
-              <div formArrayName="dependientes" class="array-list">
-                <div *ngFor="let d of dependientes.controls; let i=index" [formGroupName]="i" class="array-item">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Nombres</mat-label>
-                    <input matInput formControlName="nombres">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput formControlName="apellidos">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Fecha Nacimiento</mat-label>
-                    <input matInput type="date" formControlName="fechaNacimiento">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Parentesco</mat-label>
-                    <input matInput formControlName="parentesco">
-                  </mat-form-field>
-                  <button mat-icon-button color="warn" (click)="removeDependiente(i)" *ngIf="dependientes.length > 1">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-                <button mat-stroked-button color="primary" (click)="addDependiente()">Agregar Dependiente</button>
+            <ng-template matStepLabel>Dependientes</ng-template>
+            <div formArrayName="dependientes" class="array-list">
+              <div *ngFor="let d of dependientes.controls; let i=index" [formGroupName]="i" class="array-item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nombres *</mat-label>
+                  <input matInput formControlName="nombres">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Apellidos *</mat-label>
+                  <input matInput formControlName="apellidos">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Fecha Nacimiento *</mat-label>
+                  <input matInput [matDatepicker]="dpDependiente" formControlName="fechaNacimiento">
+                  <mat-datepicker-toggle matSuffix [for]="dpDependiente"></mat-datepicker-toggle>
+                  <mat-datepicker #dpDependiente></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Parentesco *</mat-label>
+                  <input matInput formControlName="parentesco">
+                </mat-form-field>
+                <button mat-icon-button color="warn" (click)="removeDependiente(i)" *ngIf="dependientes.length > 1">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
-
-              <div class="buttons">
-                <button mat-button matStepperPrevious>Anterior</button>
-                <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
-              </div>
-            </form>
+              <button type="button" class="add-btn" (click)="addDependiente()">
+                <mat-icon>add</mat-icon> Agregar Dependiente
+              </button>
+            </div>
+            <div class="buttons">
+              <button mat-button class="stepper-btn" matStepperPrevious>Anterior</button>
+              <button mat-flat-button class="stepper-btn" matStepperNext>Siguiente</button>
+            </div>
           </mat-step>
 
           <mat-step>
             <ng-template matStepLabel>Detalles Finales</ng-template>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Paquete</mat-label>
+              <mat-label>Paquete *</mat-label>
               <mat-select formControlName="paquete">
                 <mat-option *ngFor="let p of paquetes" [value]="p.id">{{ p.nombre }}</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Forma de Pago</mat-label>
+              <mat-label>Forma de Pago *</mat-label>
               <mat-select formControlName="formaPago">
                 <mat-option value="MENSUAL">Mensual</mat-option>
                 <mat-option value="ANUAL">Anual</mat-option>
@@ -196,15 +216,18 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Fecha de Emisión</mat-label>
-              <input matInput type="date" formControlName="fechaEmision">
+              <mat-label>Fecha de Emisión *</mat-label>
+              <input matInput [matDatepicker]="dpEmision" formControlName="fechaEmision">
+              <mat-datepicker-toggle matSuffix [for]="dpEmision"></mat-datepicker-toggle>
+              <mat-datepicker #dpEmision></mat-datepicker>
             </mat-form-field>
 
             <div class="buttons">
-              <button mat-button matStepperPrevious>Anterior</button>
+              <button mat-button class="stepper-btn" matStepperPrevious>Anterior</button>
               <button mat-flat-button color="accent" type="submit">Emitir Póliza</button>
             </div>
           </mat-step>
+
         </mat-horizontal-stepper>
       </form>
     </mat-card>

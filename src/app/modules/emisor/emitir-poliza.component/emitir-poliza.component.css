@@ -1,41 +1,114 @@
-.emitir-container {
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.emitir-dashboard-container {
   display: flex;
   height: 100vh;
-  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+  background: #030d1d;
 }
 
-.form-wrapper {
-  flex: 1;
+.appnav {
+  width: 250px;
+  background-color: #1f2a38;
+  color: #fff;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+  padding: 20px;
 }
 
-.poliza-card {
-  width: 90%;
-  max-width: 1100px;
-  border-radius: 16px;
+.emitir-content {
+  flex: 1;
+  padding: 20px 60px;
+  overflow-y: auto;
+}
+
+.emitir-card {
+  background: #fff;
+  border-radius: 20px;
   padding: 40px 50px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  background-color: #fff;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+
+.emitir-card:hover {
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+  transform: translateY(-2px);
 }
 
 .titulo {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-size: 2rem;
   color: #1a237e;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 .full-width {
   grid-column: 1 / -1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
+}
+
+.mat-form-field.mat-focused .mat-form-field-wrapper {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  transform: scale(1.02);
+}
+
+.mat-form-field-label {
+  font-weight: 500;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #1a237e !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.mat-input-element {
+  transition: all 0.3s ease;
+  padding-top: 1.6rem;
+}
+
+.mat-input-element:focus {
+  box-shadow: inset 0 0 8px rgba(26,35,126,0.2);
+  border-radius: 8px;
+  transform: scale(1.01);
+}
+
+.mat-mdc-floating-label {
+  transform: translateY(0);
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  color: #555;
+  font-size: 1rem;
+  top: 0;
+}
+
+.mat-mdc-input-element:focus ~ .mat-mdc-floating-label,
+.mat-mdc-input-element:not(:placeholder-shown) ~ .mat-mdc-floating-label {
+  transform: translateY(-130%) scale(0.85);
+  color: #1a237e;
+  font-weight: 600;
 }
 
 .array-section {
@@ -55,32 +128,161 @@
   gap: 10px;
   background: #f9f9f9;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
   align-items: center;
+  transition: all 0.3s ease, transform 0.3s ease;
 }
 
-h3 {
+.array-item:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  transform: translateY(-2px);
+}
+
+.add-btn, .mat-flat-button {
+  background: linear-gradient(135deg, #0f142c, #060814);
+  color: white;
+  border-radius: 10px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.add-btn mat-icon {
+  font-size: 18px;
+}
+
+.add-btn:hover, .mat-flat-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.add-btn:active, .mat-flat-button:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.mat-horizontal-stepper-header {
+  background: #f5f5f5;
+  border-radius: 20px;
+  margin-right: 10px;
+  padding: 10px 15px;
+  transition: all 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   font-weight: 500;
-  color: #3f51b5;
+  color: #555;
+}
+
+.mat-horizontal-stepper-header.mat-active {
+  background: linear-gradient(135deg, #404791, #3f51b5);
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  transform: translateY(-3px) scale(1.02);
+  height: auto;
+}
+
+.mat-horizontal-stepper-header.mat-completed {
+  background: #d1d9ff;
+  color: #040725 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
 .buttons {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 15px;
+  margin-top: 25px;
 }
 
-mat-form-field {
-  width: 100%;
+h3 {
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .poliza-card {
+.stepper-btn {
+  background: linear-gradient(135deg, #164d06, #1f5c28);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 40px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: all 0.3s ease, transform 0.2s ease;
+}
+
+.stepper-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.stepper-btn:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.mat-form-field.mat-focused, .array-item:hover, .stepper-btn:hover {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .emitir-content {
+    width: 100%;
     padding: 20px;
   }
-
   .titulo {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
+  .appnav {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+::ng-deep .mat-datepicker-content {
+  background: #ffffff !important;
+  color: #1a237e !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .mat-calendar {
+  background: #ffffff !important;
+  color: #1a237e !important;
+}
+
+::ng-deep .mat-calendar-header {
+  background: linear-gradient(135deg, #404791, #3f51b5) !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-calendar-table-header th {
+  color: #1a237e !important;
+}
+
+::ng-deep .mat-calendar-body-cell {
+  color: #1a237e !important;
+}
+
+::ng-deep .mat-calendar-body-selected,
+::ng-deep .mat-calendar-body-active {
+  background: linear-gradient(135deg, #3f51b5, #1a237e) !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border: 1px solid #3f51b5 !important;
+}
+
+
+.emitir-card mat-form-field:first-child,
+.emitir-card mat-form-field:nth-child(2),
+.emitir-card mat-form-field:nth-child(3) {
+  margin-top: 15px;
 }

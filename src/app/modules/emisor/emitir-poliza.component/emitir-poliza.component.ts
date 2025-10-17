@@ -19,8 +19,8 @@ export class EmitirPolizaComponent implements OnInit {
         apellidos: ['', Validators.required],
         nit: ['', Validators.required],
         dpi: ['', Validators.required],
-        telefonos: this.fb.array([this.fb.control('')]),
-        correos: this.fb.array([this.fb.control('')]),
+        telefonos: this.fb.array([this.fb.control('', [Validators.required, Validators.pattern(/^\+502 \d{4} \d{4}$/)])]),
+        correos: this.fb.array([this.fb.control('', [Validators.required, Validators.pattern(/^[\w-\.]+@[\w-]+\.(com)$/)])]),
         direccionCobro: ['', Validators.required],
         direccionFiscal: ['', Validators.required],
         direccionCorrespondencia: ['', Validators.required],
@@ -48,10 +48,10 @@ export class EmitirPolizaComponent implements OnInit {
   get beneficiarios() { return this.polizaForm.get('beneficiarios') as FormArray; }
   get dependientes() { return this.polizaForm.get('dependientes') as FormArray; }
 
-  addTelefono() { this.telefonos.push(this.fb.control('')); }
+  addTelefono() { this.telefonos.push(this.fb.control('', [Validators.required, Validators.pattern(/^\+502 \d{4} \d{4}$/)])); }
   removeTelefono(i: number) { this.telefonos.removeAt(i); }
 
-  addCorreo() { this.correos.push(this.fb.control('')); }
+  addCorreo() { this.correos.push(this.fb.control('', [Validators.required, Validators.pattern(/^[\w-\.]+@[\w-]+\.(com)$/)])); }
   removeCorreo(i: number) { this.correos.removeAt(i); }
 
   addBeneficiario() {
@@ -76,7 +76,10 @@ export class EmitirPolizaComponent implements OnInit {
   removeDependiente(i: number) { this.dependientes.removeAt(i); }
 
   emitirPoliza() {
-    if (this.polizaForm.invalid) return;
+    if (this.polizaForm.invalid) {
+      this.polizaForm.markAllAsTouched();
+      return;
+    }
 
     const payload = {
       clienteId: null,
@@ -88,7 +91,8 @@ export class EmitirPolizaComponent implements OnInit {
       fechaEmision: this.polizaForm.value.fechaEmision
     };
 
+   
     this.http.post('http://localhost:8080/api/polizas/emitir', payload)
-      .subscribe(() => alert('✅ Póliza emitida con éxito'));
+      .subscribe(() => alert('Póliza emitida con éxito'));
   }
 }
